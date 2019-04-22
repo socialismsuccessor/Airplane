@@ -10,7 +10,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
 import yxy.flyinggame.beans.Background;
 import yxy.flyinggame.beans.Bullet;
@@ -42,9 +42,7 @@ public class PlayingPanel extends JPanel {
     private Enemy3[] enemy3s = {}; // 发射子弹的敌人数组
     private Bullet[] bullets = {}; // 子弹数组
     private EnemyBullet[] enemy3bullets = {}; // 敌人子弹数组
-
     private EnemyBoss[] enemyBoss = {};//boss 发射子弹的数组
-
     private int bulletspeed = 30; // 子弹速度
     private int enemybulletspeed = 60; // 子弹速度
     private int time = 10; // 定时器触发时间
@@ -62,34 +60,34 @@ public class PlayingPanel extends JPanel {
     }
 
     public void LeveOfJudge() {
-        if(score<=200) {
-            GamePanel.state=GamePanel.EASY;
-            GamePanel.nowlevel=GamePanel.EASY;
-        }
-        else if(200<score && score<=400) {
-            GamePanel.state=GamePanel.MIDDLE;
-            GamePanel.nowlevel=GamePanel.MIDDLE;
-        }else {
-            GamePanel.state=GamePanel.DIFFICULT;
-            GamePanel.nowlevel=GamePanel.DIFFICULT;
-        }
-        switch (GamePanel.nowlevel) { // 根据不同难度设置
-            case GamePanel.EASY:
-                bulletspeed = 20;
-                enemybulletspeed = 50;
-                randnum = 30;
-                break;
-            case GamePanel.MIDDLE:
-                bulletspeed = 25;
-                enemybulletspeed = 40;
-                randnum = 40;
-                break;
-            case GamePanel.DIFFICULT:
-                bulletspeed = 25;
-                enemybulletspeed = 30;
-                randnum = 100;
-                break;
-        }
+    	if(score<=200) {
+    		GamePanel.state=GamePanel.EASY;
+    		GamePanel.nowlevel=GamePanel.EASY;
+    	}
+    	else if(200<score && score<=400) {
+    		GamePanel.state=GamePanel.MIDDLE;
+    		GamePanel.nowlevel=GamePanel.MIDDLE;
+    	}else {
+    		GamePanel.state=GamePanel.DIFFICULT;
+    		GamePanel.nowlevel=GamePanel.DIFFICULT;
+    	}
+    	switch (GamePanel.nowlevel) { // 根据不同难度设置
+        case GamePanel.EASY:
+            bulletspeed = 20;
+            enemybulletspeed = 50;
+            randnum = 30;
+            break;
+        case GamePanel.MIDDLE:
+            bulletspeed = 25;
+            enemybulletspeed = 40;
+            randnum = 40;
+            break;
+        case GamePanel.DIFFICULT:
+            bulletspeed = 25;
+            enemybulletspeed = 30;
+            randnum = 100;
+            break;
+    	}
     }
 
     //
@@ -110,29 +108,29 @@ public class PlayingPanel extends JPanel {
 
     // 产生下一飞行物的类型
     public FlyingObjectAbstract createNextObject() {
-        Random rand = new Random();
-        if(150<score&&score<200 ||350<score&&score<400||550<score&&score<600) {
-            if(BossNumber) {
-                BossNumber=false;
-                Boss =new EnemyBoss();
-            }
-            return Boss;
-        }else {
-            int flytype = rand.nextInt(randnum); // 生成0到49的随机数
-            if (flytype == 0) { // 为0时产生红心
-                return new Heart();
-            } else if (flytype == 1) { // 为1时产生钻石
-                return new Diamond();
-            } else if (flytype % 3 == 0) { // 产生敌人1号
-                return new Enemy1();
-            } else if (flytype % 3 == 1) {// 产生敌人2号
-                return new Enemy2();
-            } else if (flytype % 3 == 2 && flytype <= 30) { // 产生敌人3号
-                return new Enemy3();
-            }else {
-                return new Enemy1();
-            }
-        }
+    	Random rand = new Random();
+    	if(150<score&&score<200 ||350<score&&score<400||550<score&&score<600) {
+    		if(BossNumber) {
+    			BossNumber=false;
+    			Boss =new EnemyBoss();
+    		}
+    		return Boss;
+    	}else {
+    		int flytype = rand.nextInt(randnum); // 生成0到49的随机数
+    		if (flytype == 0) { // 为0时产生红心
+    			return new Heart();
+    		} else if (flytype == 1) { // 为1时产生钻石
+    			return new Diamond();
+    		} else if (flytype % 3 == 0) { // 产生敌人1号
+    			return new Enemy1();
+    		} else if (flytype % 3 == 1) {// 产生敌人2号
+    			return new Enemy2();
+    		} else if (flytype % 3 == 2 && flytype <= 30) { // 产生敌人3号
+    			return new Enemy3();
+    		}else {
+    			return new Enemy1();
+    		}
+    	}
     }
 
     // 显示除英雄机的所有对象
@@ -147,8 +145,8 @@ public class PlayingPanel extends JPanel {
                 enemy3s[enemy3s.length - 1] = (Enemy3) (flyobjects[flyobjects.length - 1]);
             }
             if(flyobjects[flyobjects.length - 1] instanceof EnemyBoss) {
-                enemyBoss = Arrays.copyOf(enemyBoss, enemyBoss.length + 1);
-                enemyBoss[enemyBoss.length - 1] = (EnemyBoss)(flyobjects[flyobjects.length - 1]);
+            	enemyBoss = Arrays.copyOf(enemyBoss, enemyBoss.length + 1);
+            	enemyBoss[enemyBoss.length - 1] = (EnemyBoss)(flyobjects[flyobjects.length - 1]);
             }
         }
 
@@ -161,9 +159,9 @@ public class PlayingPanel extends JPanel {
             }
             //EnemyBoss enemyBoss =new EnemyBoss();
             for(int i= 0;i<enemyBoss.length;i++) {
-                EnemyBullet eb = enemyBoss[i].shoot();
-                EnemyBullet ebp = enemyBoss[i].shoot();
-                enemy3bullets = Arrays.copyOf(enemy3bullets, enemy3bullets.length + 1);
+            	EnemyBullet eb = enemyBoss[i].shoot();
+            	EnemyBullet ebp = enemyBoss[i].shoot();
+            	enemy3bullets = Arrays.copyOf(enemy3bullets, enemy3bullets.length + 1);
                 enemy3bullets[enemy3bullets.length - 1] = eb;
                 enemy3bullets[enemy3bullets.length - 1] = ebp;
             }
@@ -279,8 +277,8 @@ public class PlayingPanel extends JPanel {
                 }
 
             } else if (flyobject instanceof EnemyBoss) {
-                flyobject.life --;
-                if (flyobject.life == 10) {
+            	flyobject.life --;
+            	if (flyobject.life == 10) {
                     flyobject.Image = GamePanel.enemyBossBeatedImg;
                 } else if (flyobject.life == 0) {
                     flyobject.Image = GamePanel.enemyBossDiedImg;
@@ -366,8 +364,8 @@ public class PlayingPanel extends JPanel {
 
     // 开始
     public void start() {
-        GamePanel.state=GamePanel.EASY;
-        GamePanel.nowlevel=GamePanel.EASY;
+    	GamePanel.state=GamePanel.EASY;
+		GamePanel.nowlevel=GamePanel.EASY;
         starttime = System.currentTimeMillis(); // 开始时间
         MouseAdapter Ma = new MouseAdapter() {
             public void mouseMoved(MouseEvent e) {

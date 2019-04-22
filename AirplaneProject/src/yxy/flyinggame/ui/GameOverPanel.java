@@ -29,7 +29,7 @@ public class GameOverPanel extends JPanel {
         InfoScore.setBounds(90, 150, 140, 30);
         BeginNowGame.setBounds(100, 210, 100, 30);
         ExitPlay1.setBounds(100, 260, 100, 30);
-        InfoScore.setText("您的分数为："+PlayingPanel.score);
+        InfoScore.setText("您的分数为："+ PlayingPanel.score);
         //分层面板
         GameOverJlp.setBounds(0, 0, GameFrame.WIDTH, GameFrame.HEIGHT);
         GameOverJlp.add(GameOverBg, JLayeredPane.DEFAULT_LAYER);

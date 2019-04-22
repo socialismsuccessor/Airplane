@@ -9,7 +9,7 @@ public abstract class FlyingObjectAbstract {
 	public int Height; // 飞行物高
 	public int x; // 飞行物x坐标
 	public int y; // 飞行物y坐标
-	public int life; // 飞行物生命
+	public int life=3; // 飞行物生命
 
 	// 飞行物走位
 	public abstract void move();

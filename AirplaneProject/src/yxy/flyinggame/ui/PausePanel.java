@@ -31,7 +31,7 @@ public class PausePanel extends JPanel {
         PauseGoOn.setBounds(100, 210, 100, 30);
         EndPlay1.setBounds(100, 260, 100, 30);
         ExitPlay1.setBounds(100, 310, 100, 30);
-        InfoScore.setText("当前分数为："+PlayingPanel.score);
+        InfoScore.setText("当前分数为："+ PlayingPanel.score);
         //分层面板
         PauseJlp.setBounds(0, 0, GameFrame.WIDTH, GameFrame.HEIGHT);
         PauseJlp.add(PauseBg, JLayeredPane.DEFAULT_LAYER);

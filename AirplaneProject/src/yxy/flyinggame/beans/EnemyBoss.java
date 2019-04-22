@@ -1,45 +1,62 @@
 package yxy.flyinggame.beans;
 
-import java.util.Random;
-
 import yxy.flyinggame.ui.GameFrame;
 import yxy.flyinggame.ui.GamePanel;
-import yxy.flyinggame.ui.PlayingPanel;
+
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
+import java.util.Random;
 
 public class EnemyBoss extends FlyingObjectAbstract implements EnemyInterface {
 	private int xStep = 1; // x坐标走步步数
-	private double yStep = 0.1; // y坐标走步步数
+	private double yStep = 0.0001; // y坐标走步步数
 
-	private int step = 2;//y轴移动方向
-	private static EnemyBoss EnemyBoss;
-	private static  int i = 0;
-	//初始化
-	public EnemyBoss() {
-		Image = GamePanel.enemybBossImg;
-		Height = Image.getHeight();
-		Width = Image.getWidth();
-		//   	x = 160;
-		Random rand = new Random();
-		x = rand.nextInt(GameFrame.WIDTH-this.Width);//产生X的坐标
-		y = -Height;
-		life = 30;
+	//private int step = 2;//y轴移动方向
+    private static yxy.flyinggame.beans.EnemyBoss EnemyBoss;
+    private static  int i = 0;
+    //初始化
+    public EnemyBoss() {
+    	Image = GamePanel.enemybBossImg;
+    	Height = Image.getHeight();
+    	Width = Image.getWidth();
+ //   	x = 160;
+    	Random rand = new Random();
+    	x = rand.nextInt(GameFrame.WIDTH-this.Width);//产生X的坐标
+    	y = -Height;
+    	life = 30;
+
+    }
+    public static synchronized yxy.flyinggame.beans.EnemyBoss getInstance() {
+    	
+    	if(null == EnemyBoss) {
+    		EnemyBoss = new EnemyBoss();
+    		
+    	}
+    	return EnemyBoss;
+    }
+    public  void draw(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		//画外圈
+		Rectangle2D r2 = new Rectangle2D.Double(x, y-10,40 ,10 );
+		g2.setColor(Color.WHITE);
+		g2.draw(r2);
+		//根据血量比例画血条
+		Rectangle2D r = new Rectangle2D.Double(x+1, y-10, 40*((double)life/25)-1, 10);
+		g2.setColor(Color.RED);
+		g2.fill(r);
 	}
-//    public static synchronized EnemyBoss getInstance() {
-//
-//    	if(null == EnemyBoss) {
-//    		EnemyBoss = new EnemyBoss();
-//    	}
-//    	return EnemyBoss;
-//    }
-
-
+   
+    public boolean isbLive() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 	//击败得分90
 	@Override
 	public int getScore() {
 		// TODO Auto-generated method stub
 		return 90;
 	}
-	//boss机走位
+    //boss机走位
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
@@ -59,17 +76,17 @@ public class EnemyBoss extends FlyingObjectAbstract implements EnemyInterface {
 		y += yStep;
 	}
 
-	//超出边界判断
+    //超出边界判断
 	@Override
 	public boolean outOfBounds() {
 //		 TODO Auto-generated method stub
 		//return this.y > GameFrame.HEIGHT;
 		return false;
 	}
-	//发射子弹
+    //发射子弹
 	public EnemyBullet shoot() {
 		EnemyBullet bullet = new EnemyBullet(this.x + this.Width/2,this.y + this.Height);
 		return bullet;
-
+		
 	}
 }
