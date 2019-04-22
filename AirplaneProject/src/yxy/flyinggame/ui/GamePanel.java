@@ -62,6 +62,7 @@ public class GamePanel extends JPanel {
     public static BufferedImage enemy3beatedImg;// 敌机三号被打
     public static BufferedImage enemy3diedImg;// 敌机三号死亡
     public static BufferedImage heartImg; // 红心
+    public static BufferedImage lifeheartImg; // 生命值
     public static BufferedImage diamondImg; // 钻石
     public static BufferedImage pauseImg; // 暂停
     public static BufferedImage gameoverImg; // 游戏结束
@@ -74,10 +75,10 @@ public class GamePanel extends JPanel {
     // 初始加载图片资源
     static {
         try {
-            startbgImg = ImageIO.read(new File("src/yxy/flyinggame/images/startbg.jpg"));
-            heroImg = ImageIO.read(new File("src/yxy/flyinggame/images/hero.png"));
-            herobeatedImg = ImageIO.read(new File("src/yxy/flyinggame/images/hero_beated.png"));
-            herodiedImg = ImageIO.read(new File("src/yxy/flyinggame/images/hero_died.png"));
+            startbgImg = ImageIO.read(new File("src/yxy/flyinggame/images/startbg1.jpg"));
+            heroImg = ImageIO.read(new File("src/yxy/flyinggame/images/hero1.png"));
+            herobeatedImg = ImageIO.read(new File("src/yxy/flyinggame/images/hero_beated1.png"));
+            herodiedImg = ImageIO.read(new File("src/yxy/flyinggame/images/hero_died1.png"));
             bulletImg = ImageIO.read(new File("src/yxy/flyinggame/images/bullet.png"));
             bullet1Img = ImageIO.read(new File("src/yxy/flyinggame/images/bullet1.png"));
             
@@ -93,10 +94,11 @@ public class GamePanel extends JPanel {
             enemy3beatedImg = ImageIO.read(new File("src/yxy/flyinggame/images/enemy3_beated.png"));
             enemy3diedImg = ImageIO.read(new File("src/yxy/flyinggame/images/enemy3_died.png"));
             pauseImg = ImageIO.read(new File("src/yxy/flyinggame/images/pause.png"));
-            background1Img = ImageIO.read(new File("src/yxy/flyinggame/images/background1.jpg"));
+            background1Img = ImageIO.read(new File("src/yxy/flyinggame/images/background5.jpg"));
             background2Img = ImageIO.read(new File("src/yxy/flyinggame/images/background2.jpg"));
             background3Img = ImageIO.read(new File("src/yxy/flyinggame/images/background3.jpg"));
             heartImg = ImageIO.read(new File("src/yxy/flyinggame/images/heart.png"));
+            lifeheartImg = ImageIO.read(new File("src/yxy/flyinggame/images/heart2.png"));
             diamondImg = ImageIO.read(new File("src/yxy/flyinggame/images/diamond.png"));
             gameoverImg = ImageIO.read(new File("src/yxy/flyinggame/images/gameover.png"));
 
@@ -160,8 +162,8 @@ public class GamePanel extends JPanel {
         NameText.setBounds(75, 180, 150, 30);
         InfoLabel.setBounds(90, 220, 150, 30);
         StartPlay.setBounds(100, 260, 100, 30);
-        //EndPlay.setBounds(100, 310, 100, 30);
-        //SetPlay.setBounds(100, 360, 100, 30);
+        EndPlay.setBounds(100, 310, 100, 30);
+        SetPlay.setBounds(100, 360, 100, 30);
 //        EasyBtn.setBounds(100, 280, 100, 30);
 //        MiddleBtn.setBounds(100, 340, 100, 30);
 //        DifficultBtn.setBounds(100, 400, 100, 30);
